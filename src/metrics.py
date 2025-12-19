@@ -221,6 +221,7 @@ class Metrics:
         metrics = {
             "total_return": total_return * 100,
             "annual_return": annual_return * 100,
+            "cagr": annual_return * 100,
             "max_drawdown": max_dd * 100,
             "sharpe_ratio": self.calculate_sharpe_ratio(returns),
             "sortino_ratio": self.calculate_sortino_ratio(returns),

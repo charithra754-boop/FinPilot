@@ -41,21 +41,27 @@ We have successfully transitioned the FinPilot model from a theoretical concept 
     *   **Sharpe Ratio:** 1.56
     *   **Crash Survivability (CSI):** 1,511
 
+### Phase 3: Multi-Asset Diversification (Risk Management Upgrade)
+*   **Approach:** Added ETH/USD (40%) to the portfolio alongside BTC (60%). Implemented volatility-weighted allocation and regime-based 100% cash exits.
+*   **Result:** Safety metrics improved drastically at the cost of some raw performance (diversification "tax").
+*   **Stats (2018-2024):**
+    *   **Max Drawdown:** **28.38%** (Down from ~45% for BTC-only)
+    *   **Correlation:** 0.90 (BTC vs ETH in crashes) - confirms need for cash exits.
+    *   **Sharpe Ratio:** 1.33
+*   **Verdict:** Institutional-grade safety achieved. While Sharpe dipped, the stress-adjusted reliability is far superior.
+
 ## 3. Success Metrics Summary
 
-| Metric | Baseline | Final Optimized | Improvement |
-| :--- | :--- | :--- | :--- |
-| **Sharpe Ratio** | 1.30 | **1.56** | **+20%** (Risk-Adjusted Return) |
-| **Max Drawdown** | 70.37% | **44.74%** | **-36%** (Risk Reduction) |
-| **Total Return** | 47,920% | **67,633%** | **+41%** (Profitability) |
-| **Trade Quality** | High Friction | Optimized | Fewer false signals |
+| Metric | Baseline | Final Optimized (BTC) | Multi-Asset (BTC+ETH) | Improvement |
+| :--- | :--- | :--- | :--- | :--- |
+| **Sharpe Ratio** | 1.30 | **1.56** | 1.33 | **+20%** (via Optimization) |
+| **Max Drawdown** | 70.37% | 44.74% | **28.38%** | **-60%** (via Diversification) |
+| **Total Return** | 47k% | **67k%** | 682%* | * Shorter period (2018-2024) |
 
 ## 4. Future Outlook & Projections
 
-### Short Term (Phase 3: Multi-Asset)
-We are currently trading only BTC. Adding ETH and potentially Gold/Nasdaq as tradable assets (not just indicators) will likely:
-*   **Reduce Volatility:** When BTC dumps, capital can flow into uncorrelated assets or stablecoins.
-*   **Increase Sharpe:** Diversification is the "only free lunch" in finance. We anticipate pushing the Sharpe Ratio towards **1.8 - 2.0**.
+### Short Term (Phase 4: Unit Tests)
+Now that the strategy logic is finalized (Regime Detection + Portfolio Weights), we must lock it down with rigorous unit tests to prevent regression during refactoring.
 
 ### Medium Term (Phase 5: Visuals & Reporting)
 *   The current raw numbers are impressive, but visualizations (equity curves, regime heatmaps) will demonstrate *exactly* how we dodged specific crashes (e.g., Nov 2022 FTX collapse). This narrative is crucial for the competition submission.
@@ -65,6 +71,8 @@ We are currently trading only BTC. Adding ETH and potentially Gold/Nasdaq as tra
 *   **Scale:** Managing $67M (simulated) implies slippage would be higher than 0.1%. Future tests should stress-test with 0.5% or 1% slippage to prove institutional viability.
 
 ### Conclusion
-We have moved from a risky prototype to a **institutional-grade baseline**. The model detects crashes with high accuracy and protects capital. The next leap in performance will come not from tuning parameters further, but from **diversifying the portfolio**.
+We have moved from a risky prototype to a **institutional-grade baseline**. The model detects crashes with high accuracy and protects capital.
+*   **For Max Growth:** Use the Single-Asset BTC Strategy (Sharpe 1.56).
+*   **For Safety:** Use the Multi-Asset Portfolio (Drawdown 28%).
 
-**Recommendation:** Proceed immediately to **Phase 3 (Multi-Asset Support)**.
+**Recommendation:** Proceed to **Phase 4 (Unit Tests)** to verify code reliability.

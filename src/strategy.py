@@ -231,6 +231,85 @@ class TradingStrategy:
         
         return results
 
+    def run_portfolio_strategy(
+        self,
+        features_dict: dict[str, pd.DataFrame],
+        regimes: pd.Series,
+        allocations: dict[str, float]
+    ) -> pd.DataFrame:
+        """
+        Run strategy for a multi-asset portfolio.
+        
+        Args:
+            features_dict: Dict of DataFrames with features for each asset
+            regimes: Series of regime labels (market-wide)
+            allocations: Target allocation for each asset (e.g. {'BTC': 0.6})
+            
+        Returns:
+            DataFrame of target weights (cols=assets, index=dates)
+        """
+        # Align index
+        common_index = regimes.index
+        for df in features_dict.values():
+            common_index = common_index.intersection(df.index)
+            
+        weights = pd.DataFrame(0.0, index=common_index, columns=features_dict.keys())
+        
+        # State tracking per asset
+        current_positions = {asset: Position.CASH for asset in features_dict.keys()}
+        entry_prices = {asset: 0.0 for asset in features_dict.keys()}
+        
+        for idx in common_index:
+            regime = regimes.loc[idx]
+            
+            # Global Regime Override
+            if regime in ["crash", "recovery"]:
+                # Force all positions to cash
+                for asset in features_dict.keys():
+                    current_positions[asset] = Position.CASH
+                    entry_prices[asset] = 0.0
+                    weights.loc[idx, asset] = 0.0
+                continue
+                
+            # Asset-levl signals
+            for asset, df in features_dict.items():
+                if asset not in allocations:
+                    continue
+                    
+                row = df.loc[idx]
+                
+                # Check stop loss
+                if current_positions[asset] == Position.LONG:
+                    if self.check_stop_loss(entry_prices[asset], row["price"]):
+                        current_positions[asset] = Position.CASH
+                        entry_prices[asset] = 0.0
+                        weights.loc[idx, asset] = 0.0
+                        continue
+                
+                # Generate signal
+                signal = self.generate_normal_signal(row)
+                
+                # Update state
+                if signal == Position.LONG:
+                    current_positions[asset] = Position.LONG
+                    if entry_prices[asset] == 0:
+                        entry_prices[asset] = row["price"]
+                elif signal == Position.CASH:
+                    current_positions[asset] = Position.CASH
+                    entry_prices[asset] = 0.0
+                
+                # Calculate weight
+                if current_positions[asset] == Position.LONG:
+                    # Apply volatility scaling to the allocation
+                    # e.g. Target 60% * VolScalar(0.8) = 48% actual weight
+                    vol_scalar = self.calculate_position_size(row.get("volatility_10d", 0.02))
+                    target_weight = allocations[asset] * vol_scalar
+                    weights.loc[idx, asset] = target_weight
+                else:
+                    weights.loc[idx, asset] = 0.0
+                    
+        return weights
+
 
 if __name__ == "__main__":
     # Test strategy

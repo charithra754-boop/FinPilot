@@ -244,6 +244,52 @@ class DataHandler:
         
         return crypto_df, nasdaq_df
 
+    def load_portfolio(
+        self,
+        crypto_files: dict[str, str],
+        nasdaq_file: str,
+        price_column: str = "Close"
+    ) -> Tuple[dict[str, pd.DataFrame], pd.DataFrame]:
+        """
+        Load and align multiple crypto assets with NASDAQ data.
+        
+        Args:
+            crypto_files: Dict mapping asset name to filename, e.g., {'BTC': 'btc.csv', 'ETH': 'eth.csv'}
+            nasdaq_file: Filename for NASDAQ data
+            price_column: Price column name
+            
+        Returns:
+            Tuple of (dict of aligned crypto DFs, aligned nasdaq DF)
+        """
+        # Load NASDAQ first
+        nasdaq_df = self.load_investing_csv(nasdaq_file)
+        nasdaq_df = self.forward_fill(nasdaq_df)
+        
+        # Load all crypto assets
+        crypto_dfs = {}
+        for asset, filename in crypto_files.items():
+            df = self.load_investing_csv(filename)
+            df = self.forward_fill(df)
+            crypto_dfs[asset] = df
+            
+        # Create list for alignment (nasdaq + all cryptos)
+        all_dfs = [nasdaq_df] + list(crypto_dfs.values())
+        
+        # Align timestamps (inner join to ensure all assets exist)
+        aligned_dfs = self.align_timestamps(*all_dfs, method="inner")
+        
+        # Unpack
+        aligned_nasdaq = aligned_dfs[0]
+        aligned_cryptos = {}
+        for i, asset in enumerate(crypto_dfs.keys()):
+            df = aligned_dfs[i+1]
+            df["returns"] = self.calculate_returns(df, price_column)
+            aligned_cryptos[asset] = df
+            
+        aligned_nasdaq["returns"] = self.calculate_returns(aligned_nasdaq, price_column)
+        
+        return aligned_cryptos, aligned_nasdaq
+
 
 
 if __name__ == "__main__":

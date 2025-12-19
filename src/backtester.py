@@ -242,6 +242,132 @@ class Backtester:
         
         return summary
 
+    def run_portfolio_backtest(
+        self,
+        prices: pd.DataFrame,
+        weights: pd.DataFrame,
+        rebalance_threshold: float = 0.01
+    ) -> pd.DataFrame:
+        """
+        Run backtest for a portfolio using target weights.
+        
+        Args:
+            prices: DataFrame of asset prices (cols=assets, index=dates)
+            weights: DataFrame of target weights (cols=assets, index=dates)
+            rebalance_threshold: Min deviation to trigger rebalance
+            
+        Returns:
+            DataFrame with portfolio value and positions
+        """
+        results = []
+        
+        # Align prices and weights
+        common_index = prices.index.intersection(weights.index)
+        prices = prices.loc[common_index]
+        weights = weights.loc[common_index]
+        
+        # State
+        cash = self.initial_capital
+        holdings = {asset: 0.0 for asset in prices.columns} # Units held
+        portfolio_value = self.initial_capital
+        
+        for date in prices.index:
+            current_prices = prices.loc[date]
+            target_weights = weights.loc[date]
+            
+            # Calculate current portfolio value
+            current_holdings_value = sum(holdings[a] * current_prices[a] for a in prices.columns)
+            portfolio_value = cash + current_holdings_value
+            
+            # Check for rebalance
+            trade_cost = 0.0
+            
+            # Identify which assets need trading
+            # We simply trade to target if drift > threshold
+            # To handle cash constraint correctly, we sell first then buy
+            
+            # Calculate current weights
+            current_weights = {}
+            if portfolio_value > 0:
+                for asset in prices.columns:
+                    current_weights[asset] = (holdings[asset] * current_prices[asset]) / portfolio_value
+            else:
+                current_weights = {asset: 0.0 for asset in prices.columns}
+                
+            # Check drift
+            needs_rebalance = False
+            for asset in prices.columns:
+                if abs(current_weights.get(asset, 0) - target_weights.get(asset, 0)) > rebalance_threshold:
+                    needs_rebalance = True
+                    break
+            
+            if needs_rebalance:
+                # 1. Sell Sells
+                for asset in prices.columns:
+                    target_val = portfolio_value * target_weights.get(asset, 0)
+                    current_val = holdings[asset] * current_prices[asset]
+                    
+                    if target_val < current_val:
+                        sell_val = current_val - target_val
+                        # Sell
+                        cost = self.calculate_transaction_costs(sell_val)
+                        trade_cost += cost
+                        
+                        # Update positions
+                        units_to_sell = sell_val / current_prices[asset]
+                        holdings[asset] -= units_to_sell
+                        cash += (sell_val - cost)
+                
+                # Recalculate portfolio value after sells and costs
+                # (Cash has changed, holdings have changed)
+                # But we use the cash generated to Buy
+                
+                # 2. Buy Buys
+                for asset in prices.columns:
+                    target_val = portfolio_value * target_weights.get(asset, 0)
+                    current_val = holdings[asset] * current_prices[asset]
+                    
+                    if target_val > current_val:
+                        buy_val = target_val - current_val
+                        
+                        # Check affordability
+                        if buy_val > cash:
+                            buy_val = cash # max possible
+                        
+                        if buy_val > 0:
+                            # Buy
+                            cost = self.calculate_transaction_costs(buy_val)
+                            trade_cost += cost
+                            
+                            # Update positions
+                            units_to_buy = (buy_val - cost) / current_prices[asset]
+                            holdings[asset] += units_to_buy
+                            cash -= buy_val # buy_val includes cost implicitly if we subtract from cash? 
+                            # No, cash decreases by amount spent. 
+                            # If I want to acquire units, I pay (units * price) + cost
+                            # Here buy_val is the target amount we WANT to be in the asset.
+                            # So we spend buy_val.
+                            # The actual invested amount is buy_val - cost.
+                            
+            # Update portfolio value again for recording
+            final_holdings_value = sum(holdings[a] * current_prices[a] for a in prices.columns)
+            portfolio_value = cash + final_holdings_value
+            
+            # Record
+            record = {
+                "date": date,
+                "portfolio_value": portfolio_value,
+                "cash": cash,
+                "trade_cost": trade_cost
+            }
+            for asset in prices.columns:
+                record[f"{asset}_units"] = holdings[asset]
+                record[f"{asset}_weight"] = (holdings[asset] * current_prices[asset]) / portfolio_value if portfolio_value > 0 else 0
+                
+            results.append(record)
+            
+        return pd.DataFrame(results).set_index("date")
+
 
 if __name__ == "__main__":
     # Test backtester
