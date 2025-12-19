@@ -1,0 +1,17 @@
+{
+  "duvol_threshold": 0.4,
+  "nasdaq_drop_threshold": -0.03,
+  "volatility_ratio_threshold": 1.0,
+  "rsi_oversold": 23,
+  "rsi_overbought": 67,
+  "stop_loss_pct": 0.03,
+  "volatility_target": 0.02,
+  "feature_window": 15,
+  "validation": {
+    "train_period": "2012-2020",
+    "test_period": "2020-2024",
+    "train_sharpe": 1.3862974411354887,
+    "test_sharpe": 1.8088885499489065,
+    "sharpe_decay": -0.42259110881341777
+  }
+}
