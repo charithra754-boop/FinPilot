@@ -559,7 +559,7 @@ def calculate_canary_signal(self, nasdaq_returns: pd.Series) -> pd.Series:
 
 The equity curve demonstrates consistent growth with controlled drawdowns:
 
-![Equity Curve](figures/equity_curve.png)
+![Equity Curve](figures/performance/equity_curve.png)
 
 **Key Observations:**
 - Strategy significantly outperforms during crash periods
@@ -570,7 +570,7 @@ The equity curve demonstrates consistent growth with controlled drawdowns:
 
 The regime heatmap shows when the model detected crash conditions:
 
-![Regime Heatmap](figures/regime_heatmap.png)
+![Regime Heatmap](figures/performance/regime_heatmap.png)
 
 **Crash Detection Timeline:**
 - **March 2020**: COVID crash detected via NASDAQ canary
@@ -916,19 +916,19 @@ def calculate_high_vol_position_size(self, vol, avg_vol):
 
 ### Stress Performance Visualization
 
-![Stress Performance](figures/stress_performance.png)
+![Stress Performance](figures/stress_testing/stress_performance.png)
 
 ### VaR Distribution
 
-![VaR Distribution](figures/var_distribution.png)
+![VaR Distribution](figures/risk_metrics/var_distribution.png)
 
 ### Drawdown Recovery Timeline
 
-![Drawdown Recovery](figures/drawdown_recovery.png)
+![Drawdown Recovery](figures/risk_metrics/drawdown_recovery.png)
 
 ### Volatility Regime Performance
 
-![Volatility Regimes](figures/volatility_regimes.png)
+![Volatility Regimes](figures/risk_metrics/volatility_regimes.png)
 
 ## 10.5 Ceiling Analysis
 
@@ -958,7 +958,7 @@ Statistical proof of robustness through 1,000 simulated market scenarios.
 
 **Key Finding**: Strategy survives **2.7x more scenarios** than buy-and-hold.
 
-![Monte Carlo Simulation](figures/monte_carlo_simulation.png)
+![Monte Carlo Simulation](figures/stress_testing/monte_carlo_simulation.png)
 
 ---
 

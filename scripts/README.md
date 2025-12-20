@@ -1,29 +1,36 @@
-# FinPilot Scripts
+# Scripts 📜
 
-This directory contains executable scripts for running, optimizing, and validating the FinPilot trading strategy.
+Execution and utility scripts for FinPilot.
 
-## Key Scripts
+## Folder Structure
 
-### 1. `run_backtest.py`
-*   **Purpose:** Runs the strategy with **baseline parameters**.
-*   **Use Case:** Quick check to see if the pipeline is working.
-*   **Command:** `python scripts/run_backtest.py`
-
-### 2. `advanced_tuning.py`
-*   **Purpose:** Performs **Walk-Forward Optimization**.
-*   **Logic:** Splits data into Train (2012-2020) and Test (2020-2024) to find robust parameters.
-*   **Output:** Saves best parameters to `models/best_params.json`.
-*   **Command:** `python scripts/advanced_tuning.py`
-
-### 3. `final_backtest.py`
-*   **Purpose:** Runs the **Final Verification** on the full dataset.
-*   **Logic:** Loads optimized parameters from `models/best_params.json` and runs the strategy on 2012-2024 data.
-*   **Command:** `python scripts/final_backtest.py`
-
-## How to Run
-Always run these scripts from the **project root directory** (`FinPilot/`) so that the imports (`src/`) and data paths (`data/raw/`) work correctly.
-
-```bash
-cd /path/to/FinPilot
-python scripts/final_backtest.py
 ```
+scripts/
+├── execution/              # Main execution scripts
+│   ├── final_backtest.py   # Run full competition backtest
+│   └── generate_visualizations.py
+│
+├── notebook_utils/         # Notebook helper scripts
+│   ├── add_cis_notebook.py
+│   ├── add_monte_carlo_notebook.py
+│   └── update_notebook.py
+│
+└── README.md
+```
+
+## Execution Scripts
+
+| Script | Purpose | Command |
+|--------|---------|---------|
+| `final_backtest.py` | Run complete backtest | `python scripts/execution/final_backtest.py` |
+| `generate_visualizations.py` | Generate all charts | `python scripts/execution/generate_visualizations.py` |
+
+## Notebook Utilities
+
+Helper scripts for programmatically updating the Jupyter notebook:
+
+| Script | Purpose |
+|--------|---------|
+| `add_cis_notebook.py` | Add CIS methodology section |
+| `add_monte_carlo_notebook.py` | Add Monte Carlo section |
+| `update_notebook.py` | Add stress testing section |
