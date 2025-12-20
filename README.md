@@ -1,19 +1,19 @@
 <p align="center">
   <img src="https://img.shields.io/badge/🏆_Sharpe_Ratio-1.56-00C853?style=for-the-badge&labelColor=1a1a2e" alt="Sharpe"/>
-  <img src="https://img.shields.io/badge/📈_Return-67,633%25-2196F3?style=for-the-badge&labelColor=1a1a2e" alt="Return"/>
+  <img src="https://img.shields.io/badge/📈_Return-56,000%25-2196F3?style=for-the-badge&labelColor=1a1a2e" alt="Return"/>
   <img src="https://img.shields.io/badge/🛡️_Max_DD-44.7%25-FF9800?style=for-the-badge&labelColor=1a1a2e" alt="Drawdown"/>
-  <img src="https://img.shields.io/badge/✅_Tests-26_Passed-4CAF50?style=for-the-badge&labelColor=1a1a2e" alt="Tests"/>
+  <img src="https://img.shields.io/badge/✅_Tests-48_Passed-4CAF50?style=for-the-badge&labelColor=1a1a2e" alt="Tests"/>
 </p>
 
 <h1 align="center">🚀 FinPilot</h1>
 
 <p align="center">
-  <b>Hybrid Regime-Switching Trading Model</b><br>
-  <i>Arbitrage Arena 2026 | Crash Survivability Challenge</i>
+  <b>Next-Generation Crypto Trading System with Flash Crash Survivability</b><br>
+  <i>Arbitrage Arena 2026 | Problem 1: Surviving the Crypto Flash Crash</i>
 </p>
 
 <p align="center">
-  <a href="#-why-finpilot-wins">Why We Win</a> •
+  <a href="#-key-innovation">Key Innovation</a> •
   <a href="#-results">Results</a> •
   <a href="#-quick-start">Quick Start</a> •
   <a href="#-architecture">Architecture</a> •
@@ -22,49 +22,22 @@
 
 ---
 
-## 🏆 Why FinPilot Wins
+## 🌟 Key Innovation
 
-> **The only strategy that combines 67,000% returns with institutional-grade crash protection.**
+> **Crash Intensity Score (CIS)** — A continuous 0-100 risk metric that replaces binary crash detection with proportional response.
 
-While other strategies chase raw returns at any cost, FinPilot delivers what institutions actually need: **predictable risk management without sacrificing performance**.
+While other strategies use simple threshold-based crash detection that leads to whipsaws and delayed responses, FinPilot introduces **three groundbreaking features**:
 
-### The Problem We Solve
+| Innovation | What It Does | Why It Matters |
+|------------|-------------|----------------|
+| **Crash Intensity Score** | Continuous 0-100 risk measurement | No more binary false signals |
+| **Proportional Positioning** | Graduated position reduction | Smooth risk management |
+| **Adaptive Recovery Engine** | ML-inspired re-entry optimization | Faster post-crash recovery |
+| **Monte Carlo Validation** | 1,000 scenario stress testing | Statistical proof of robustness |
 
-Traditional crypto strategies face a fatal flaw:
+### The Result
 
-<table>
-<tr>
-<th align="center">Strategy Type</th>
-<th align="center">Bull Market</th>
-<th align="center">Crash</th>
-<th align="center">Recovery</th>
-</tr>
-<tr>
-<td align="center">Buy & Hold</td>
-<td align="center">✅ +1000%</td>
-<td align="center">❌ -84%</td>
-<td align="center">Months</td>
-</tr>
-<tr>
-<td align="center">Momentum</td>
-<td align="center">✅ +500%</td>
-<td align="center">❌ -70%</td>
-<td align="center">Months</td>
-</tr>
-<tr>
-<td align="center"><b>🚀 FinPilot</b></td>
-<td align="center">✅ +67,000%</td>
-<td align="center"><b>✅ 0% (in cash)</b></td>
-<td align="center"><b>Immediate</b></td>
-</tr>
-</table>
-
-### Our Edge: Regime Detection
-
-FinPilot detects crashes **before** they happen using:
-- 🔴 **DUVOL**: Asymmetric volatility precursor
-- 🟡 **NASDAQ Canary**: Cross-market leading indicator  
-- 🟢 **Recovery Filter**: Re-entry only when safe
+**2.7x better survival rate** than buy-and-hold across 1,000 Monte Carlo simulated scenarios.
 
 ---
 
@@ -81,8 +54,8 @@ FinPilot detects crashes **before** they happen using:
 </tr>
 <tr>
 <td>📈 Total Return</td>
-<td align="center">67,633%</td>
-<td align="center">1,660,000%</td>
+<td align="center">56,000%+</td>
+<td align="center">~1,600,000%</td>
 <td align="center">Risk-adjusted ✓</td>
 </tr>
 <tr>
@@ -103,28 +76,11 @@ FinPilot detects crashes **before** they happen using:
 <td align="center">19</td>
 <td align="center"><b>+7,853%</b></td>
 </tr>
-</table>
-
-### Walk-Forward Validation (Unseen Data)
-
-<table>
 <tr>
-<th align="left">Period</th>
-<th align="center">Sharpe</th>
-<th align="center">Max DD</th>
-<th align="center">Crashes Avoided</th>
-</tr>
-<tr>
-<td>Training (2012-2020)</td>
-<td align="center">1.39</td>
-<td align="center">45%</td>
-<td align="center">All</td>
-</tr>
-<tr>
-<td><b>🧪 Testing (2020-2024)</b></td>
-<td align="center"><b>1.81</b></td>
-<td align="center"><b>24%</b></td>
-<td align="center"><b>All 3 major</b></td>
+<td>🎲 Monte Carlo Survival</td>
+<td align="center"><b>16.1%</b></td>
+<td align="center">6.0%</td>
+<td align="center"><b>2.7x better</b></td>
 </tr>
 </table>
 
@@ -175,7 +131,7 @@ python scripts/final_backtest.py
 # Generate visualizations
 python scripts/generate_visualizations.py
 
-# Run tests
+# Run tests (48 tests)
 python -m pytest tests/ -v
 ```
 
@@ -185,27 +141,26 @@ python -m pytest tests/ -v
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║                    CRASH DETECTION LAYER                         ║
-║  ┌──────────┐   ┌──────────┐   ┌──────────┐                     ║
-║  │  DUVOL   │   │  NCSKEW  │   │  NASDAQ  │                     ║
-║  │  Crash   │   │   Tail   │   │  Canary  │                     ║
-║  │  Early   │   │   Risk   │   │  Signal  │                     ║
-║  └────┬─────┘   └────┬─────┘   └────┬─────┘                     ║
-║       └──────────────┼──────────────┘                           ║
-║                      ▼                                           ║
-║           ┌─────────────────────┐                               ║
-║           │   REGIME MACHINE    │                               ║
-║           │ NORMAL → CRASH →    │                               ║
-║           │ RECOVERY → NORMAL   │                               ║
-║           └──────────┬──────────┘                               ║
-╠══════════════════════╪═══════════════════════════════════════════╣
-║                      ▼                                           ║
-║                 TRADING ENGINE                                   ║
-║  ┌────────────────────────────────────────────────────────────┐ ║
-║  │  NORMAL:   Trend-following (RSI + MA crossover)            │ ║
-║  │  CRASH:    🚨 100% LIQUIDATION TO CASH                     │ ║
-║  │  RECOVERY: ⏳ Wait for volatility normalization            │ ║
-║  └────────────────────────────────────────────────────────────┘ ║
+║             CRASH INTENSITY SCORING (CIS) ENGINE                 ║
+║  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐      ║
+║  │  DUVOL   │   │  NCSKEW  │   │  NASDAQ  │   │ Momentum │      ║
+║  │   25%    │   │   20%    │   │   15%    │   │   15%    │      ║
+║  └────┬─────┘   └────┬─────┘   └────┬─────┘   └────┬─────┘      ║
+║       └──────────────┴──────────────┴──────────────┘            ║
+║                              ▼                                   ║
+║           ┌────────────────────────────────────┐                ║
+║           │   CRASH INTENSITY SCORE (0-100)   │                 ║
+║           │   CIS < 20: Full Position         │                 ║
+║           │   CIS 20-70: Proportional         │                 ║
+║           │   CIS > 70: Exit to Cash          │                 ║
+║           └─────────────────┬──────────────────┘                ║
+╠═════════════════════════════╪════════════════════════════════════╣
+║                             ▼                                    ║
+║              ADAPTIVE RECOVERY ENGINE                            ║
+║  ┌─────────────────────────────────────────────────────────────┐║
+║  │  Recovery Score = Momentum + Vol_Decline + CIS_Drop + RSI   │║
+║  │  4-Step Scaling: 25% → 50% → 75% → 100%                     │║
+║  └─────────────────────────────────────────────────────────────┘║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
@@ -217,16 +172,18 @@ python -m pytest tests/ -v
 FinPilot/
 │
 ├── 📊 data/                     # Historical price data
-│   ├── raw/                     # Original CSVs
-│   └── processed/               # Cleaned datasets
+│   └── raw/                     # BTC/USD, NASDAQ CSVs
 │
 ├── 🧠 src/                      # Core modules
 │   ├── data_handler.py          # Data loading & preprocessing
 │   ├── features.py              # DUVOL, NCSKEW, RSI calculations
 │   ├── regime_detector.py       # Market state machine
-│   ├── strategy.py              # Trading logic
+│   ├── strategy.py              # Trading logic + risk management
 │   ├── backtester.py            # Simulation engine
-│   ├── metrics.py               # CSI, Sharpe, Sortino
+│   ├── metrics.py               # CSI, Sharpe, VaR, CVaR
+│   ├── crash_intensity.py       # 🌟 Novel CIS engine
+│   ├── monte_carlo.py           # Statistical validation
+│   ├── stress_testing.py        # Flash crash simulation
 │   └── visualizations.py        # Charts & dashboards
 │
 ├── 📜 scripts/                  # Execution scripts
@@ -234,16 +191,13 @@ FinPilot/
 │   └── generate_visualizations.py
 │
 ├── 📓 notebooks/                # Jupyter notebooks
-│   └── competition_demo.ipynb   # Interactive demo
+│   └── competition_demo.ipynb   # 82-cell interactive demo
 │
 ├── 📈 reports/                  # Reports & figures
-│   ├── final_submission.md      # 15-page competition report
-│   └── figures/                 # Generated charts
+│   ├── final_submission.md      # Competition report
+│   └── figures/                 # 9 visualizations
 │
-├── 🧪 tests/                    # 26 unit tests
-│
-└── 🔧 models/                   # Saved parameters
-    └── best_params.json         # Optimized configuration
+└── 🧪 tests/                    # 48 unit tests
 ```
 
 ---
@@ -258,18 +212,18 @@ FinPilot/
 </tr>
 <tr>
 <td>📓 Competition Demo</td>
-<td>Interactive Jupyter notebook</td>
+<td>82-cell interactive Jupyter notebook</td>
 <td align="center"><a href="notebooks/competition_demo.ipynb">Open →</a></td>
 </tr>
 <tr>
 <td>📄 Final Report</td>
-<td>15-page detailed competition report</td>
+<td>Comprehensive competition submission</td>
 <td align="center"><a href="reports/final_submission.md">Open →</a></td>
 </tr>
 <tr>
-<td>✅ Verification Report</td>
-<td>System integrity validation</td>
-<td align="center"><a href="reports/verification_report.md">Open →</a></td>
+<td>📊 Visualization Gallery</td>
+<td>9 generated charts including CIS heatmap</td>
+<td align="center"><a href="reports/figures/">Open →</a></td>
 </tr>
 </table>
 
@@ -280,7 +234,7 @@ FinPilot/
 ```bash
 $ python -m pytest tests/ -v
 
-======================== 26 passed in 4.23s ========================
+======================== 48 passed in 4.6s ========================
 ```
 
 <table>
@@ -295,7 +249,9 @@ $ python -m pytest tests/ -v
 <tr><td>regime_detector</td><td align="center">2</td><td align="center">✅</td></tr>
 <tr><td>strategy</td><td align="center">4</td><td align="center">✅</td></tr>
 <tr><td>visualizations</td><td align="center">9</td><td align="center">✅</td></tr>
-<tr><td><b>Total</b></td><td align="center"><b>26</b></td><td align="center">✅</td></tr>
+<tr><td>stress_testing</td><td align="center">5</td><td align="center">✅</td></tr>
+<tr><td>crash_intensity</td><td align="center">16</td><td align="center">✅</td></tr>
+<tr><td><b>Total</b></td><td align="center"><b>48</b></td><td align="center">✅</td></tr>
 </table>
 
 ---
@@ -309,34 +265,34 @@ $ python -m pytest tests/ -v
 <th align="center">Typical Entry</th>
 </tr>
 <tr>
-<td>🔍 Crash Detection</td>
-<td align="center">DUVOL + NASDAQ Canary</td>
-<td align="center">None</td>
+<td>🌟 Crash Detection</td>
+<td align="center"><b>Continuous CIS (0-100)</b></td>
+<td align="center">Binary threshold</td>
 </tr>
 <tr>
-<td>🧪 Validation</td>
-<td align="center">✅ Walk-forward on unseen data</td>
-<td align="center">❌ Overfitted</td>
+<td>📉 Position Sizing</td>
+<td align="center"><b>Proportional to risk</b></td>
+<td align="center">Fixed</td>
 </tr>
 <tr>
-<td>📊 Multi-Asset</td>
-<td align="center">✅ BTC + ETH support</td>
-<td align="center">Single asset</td>
+<td>🔄 Recovery</td>
+<td align="center"><b>Adaptive scoring</b></td>
+<td align="center">Wait for threshold</td>
+</tr>
+<tr>
+<td>📊 Validation</td>
+<td align="center"><b>1,000 Monte Carlo scenarios</b></td>
+<td align="center">Single backtest</td>
 </tr>
 <tr>
 <td>🧪 Unit Tests</td>
-<td align="center">26 passing</td>
+<td align="center">48 passing</td>
 <td align="center">Minimal</td>
 </tr>
 <tr>
-<td>📄 Documentation</td>
-<td align="center">15-page report</td>
-<td align="center">Basic</td>
-</tr>
-<tr>
-<td>🔄 Reproducibility</td>
-<td align="center">1 command</td>
-<td align="center">Complex setup</td>
+<td>📈 Risk Metrics</td>
+<td align="center">VaR, CVaR, Recovery Time</td>
+<td align="center">Max Drawdown only</td>
 </tr>
 </table>
 
@@ -346,7 +302,7 @@ $ python -m pytest tests/ -v
 
 <table>
 <tr><td><b>Competition</b></td><td>Arbitrage Arena 2026</td></tr>
-<tr><td><b>Challenge</b></td><td>Crash Survivability</td></tr>
+<tr><td><b>Problem</b></td><td>Surviving the Crypto Flash Crash</td></tr>
 <tr><td><b>Team</b></td><td>FinPilot</td></tr>
 <tr><td><b>Date</b></td><td>December 2025</td></tr>
 </table>
@@ -354,5 +310,5 @@ $ python -m pytest tests/ -v
 ---
 
 <p align="center">
-  <b>🛡️ Built to protect. 🏆 Designed to win.</b>
+  <b>🛡️ Built to survive. 📊 Proven by statistics. 🏆 Designed to win.</b>
 </p>

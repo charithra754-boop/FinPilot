@@ -188,6 +188,105 @@ class Metrics:
             vol *= np.sqrt(self.trading_days)
         return vol
     
+    def calculate_var(
+        self,
+        returns: pd.Series,
+        confidence_level: float = 0.95
+    ) -> float:
+        """
+        Calculate Value at Risk (VaR) using historical method.
+        
+        VaR represents the maximum expected loss at a given confidence level.
+        
+        Args:
+            returns: Series of returns
+            confidence_level: Confidence level (0.95 = 95%)
+            
+        Returns:
+            VaR as positive percentage (e.g., 0.05 = 5% max loss)
+        """
+        if returns.empty:
+            return 0.0
+        
+        # Historical VaR: percentile of losses
+        var = returns.quantile(1 - confidence_level)
+        return abs(var)
+    
+    def calculate_cvar(
+        self,
+        returns: pd.Series,
+        confidence_level: float = 0.95
+    ) -> float:
+        """
+        Calculate Conditional VaR (CVaR) / Expected Shortfall.
+        
+        CVaR is the expected loss given that the loss exceeds VaR.
+        More conservative than VaR for tail risk.
+        
+        Args:
+            returns: Series of returns
+            confidence_level: Confidence level (0.95 = 95%)
+            
+        Returns:
+            CVaR as positive percentage
+        """
+        if returns.empty:
+            return 0.0
+        
+        var = returns.quantile(1 - confidence_level)
+        # Average of returns worse than VaR
+        tail_returns = returns[returns <= var]
+        
+        if tail_returns.empty:
+            return abs(var)
+        
+        return abs(tail_returns.mean())
+    
+    def calculate_recovery_time(
+        self,
+        equity_curve: pd.Series
+    ) -> Dict:
+        """
+        Calculate time to recover from maximum drawdown.
+        
+        Args:
+            equity_curve: Series of portfolio values
+            
+        Returns:
+            Dictionary with recovery metrics
+        """
+        running_max = equity_curve.expanding().max()
+        drawdown = (equity_curve - running_max) / running_max
+        
+        # Find max drawdown point
+        max_dd_idx = drawdown.idxmin()
+        max_dd_value = drawdown.min()
+        
+        # Find when we recovered (drawdown returns to 0)
+        recovery_mask = (equity_curve.index > max_dd_idx) & (drawdown >= 0)
+        
+        if recovery_mask.any():
+            recovery_idx = equity_curve.index[recovery_mask][0]
+            try:
+                recovery_days = (recovery_idx - max_dd_idx).days
+            except AttributeError:
+                # Handle integer index
+                recovery_days = int(recovery_idx - max_dd_idx)
+            recovered = True
+        else:
+            try:
+                recovery_days = (equity_curve.index[-1] - max_dd_idx).days
+            except AttributeError:
+                recovery_days = int(len(equity_curve) - equity_curve.index.get_loc(max_dd_idx)) - 1
+            recovered = False
+        
+        return {
+            "max_drawdown_date": max_dd_idx,
+            "max_drawdown_pct": abs(max_dd_value) * 100,
+            "recovery_days": recovery_days,
+            "recovered": recovered
+        }
+    
     def calculate_all_metrics(
         self,
         equity_curve: pd.Series,
@@ -227,8 +326,17 @@ class Metrics:
             "sortino_ratio": self.calculate_sortino_ratio(returns),
             "calmar_ratio": self.calculate_calmar_ratio(annual_return, max_dd),
             "csi": self.calculate_csi(total_return, max_dd),
-            "volatility": self.calculate_volatility(returns) * 100
+            "volatility": self.calculate_volatility(returns) * 100,
+            "var_95": self.calculate_var(returns, 0.95) * 100,
+            "var_99": self.calculate_var(returns, 0.99) * 100,
+            "cvar_95": self.calculate_cvar(returns, 0.95) * 100,
+            "cvar_99": self.calculate_cvar(returns, 0.99) * 100,
         }
+        
+        # Add recovery time metrics
+        recovery_info = self.calculate_recovery_time(equity_curve)
+        metrics["recovery_days"] = recovery_info["recovery_days"]
+        metrics["recovered"] = recovery_info["recovered"]
         
         # Crash period analysis if provided
         if crash_window is not None:

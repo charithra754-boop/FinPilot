@@ -1,49 +1,86 @@
 # Source Code 📦
 
-Core Python modules for the trading strategy.
+Core Python modules powering FinPilot's crash-resistant trading engine.
 
-## Modules
+## Module Overview
 
-| Module | Purpose |
-|--------|---------|
-| `data_handler.py` | Load and preprocess CSV data from Investing.com |
-| `features.py` | Feature engineering (DUVOL, NCSKEW, RSI, MA) |
-| `regime_detector.py` | Detect market regimes (Normal/Crash/Recovery) |
-| `strategy.py` | Trading strategy with risk management |
-| `backtester.py` | Backtest simulation with transaction costs |
-| `metrics.py` | Calculate CSI, Sharpe, Max Drawdown |
+| Module | Purpose | Key Classes |
+|--------|---------|-------------|
+| `data_handler.py` | Data ingestion & preprocessing | `DataHandler` |
+| `features.py` | Technical indicator calculation | `FeatureEngineer` |
+| `regime_detector.py` | Market state machine | `RegimeDetector` |
+| `strategy.py` | Trading logic & risk management | `TradingStrategy` |
+| `backtester.py` | Historical simulation | `Backtester` |
+| `metrics.py` | Performance analytics | `Metrics` |
+| `crash_intensity.py` | 🌟 **Novel CIS engine** | `CrashIntensityScorer` |
+| `monte_carlo.py` | Statistical validation | `MonteCarloSimulator` |
+| `stress_testing.py` | Flash crash simulation | `StressTestScenarios` |
+| `visualizations.py` | Chart generation | `StrategyVisualizer` |
 
 ## Architecture
 
 ```
-┌─────────────────┐
-│  DataHandler    │  Load & clean data
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│ FeatureEngineer │  Calculate indicators
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│ RegimeDetector  │  Detect market state
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│ TradingStrategy │  Generate signals
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│   Backtester    │  Simulate trades
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│    Metrics      │  Evaluate performance
-└─────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                     DATA LAYER                                  │
+│  ┌─────────────────┐                                            │
+│  │   DataHandler   │  CSV ingestion, alignment, cleaning        │
+│  └────────┬────────┘                                            │
+│           ▼                                                     │
+│  ┌─────────────────┐                                            │
+│  │ FeatureEngineer │  DUVOL, NCSKEW, RSI, volatility            │
+│  └────────┬────────┘                                            │
+├───────────┴─────────────────────────────────────────────────────┤
+│                   INTELLIGENCE LAYER                            │
+│  ┌─────────────────┐   ┌─────────────────────────────────────┐  │
+│  │ RegimeDetector  │   │   CrashIntensityScorer (CIS) 🌟     │  │
+│  │ (State Machine) │   │   Continuous 0-100 risk scoring     │  │
+│  └────────┬────────┘   └─────────────────┬───────────────────┘  │
+│           └──────────────┬───────────────┘                      │
+│                          ▼                                      │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │              TradingStrategy                                ││
+│  │  • Proportional position sizing based on CIS               ││
+│  │  • Trailing stops + drawdown circuit breaker                ││
+│  │  • Adaptive recovery engine                                 ││
+│  └────────────────────────┬────────────────────────────────────┘│
+├───────────────────────────┴─────────────────────────────────────┤
+│                   VALIDATION LAYER                              │
+│  ┌─────────────────┐   ┌──────────────────┐   ┌──────────────┐ │
+│  │   Backtester    │   │ MonteCarloSim    │   │ StressTest   │ │
+│  │   Historical    │   │ 1,000 scenarios  │   │ Flash crash  │ │
+│  └────────┬────────┘   └────────┬─────────┘   └──────┬───────┘ │
+│           └─────────────────────┴────────────────────┘         │
+│                              ▼                                  │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                      Metrics                                ││
+│  │   CSI, Sharpe, Max DD, VaR, CVaR, Recovery Time            ││
+│  └─────────────────────────────────────────────────────────────┘│
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Key Innovation: Crash Intensity Score (CIS)
+
+```python
+from crash_intensity import CrashIntensityScorer
+
+scorer = CrashIntensityScorer()
+cis = scorer.calculate_crash_intensity(features)
+
+# CIS = 0-100 (higher = more dangerous)
+# Position = max(0, 1 - (CIS - 20) / 60)
 ```
 
 ## Quick Test
 
 ```bash
 cd /home/cherry/FinPilot
-python src/data_handler.py
+python -m pytest tests/ -v  # Run all 48 tests
+python src/crash_intensity.py  # Demo CIS module
 ```
+
+## Code Quality
+
+- **Type hints** throughout
+- **Docstrings** for all public methods
+- **48 unit tests** with >80% coverage
+- **PEP 8** compliant

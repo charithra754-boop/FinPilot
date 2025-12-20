@@ -1,34 +1,55 @@
 # Notebooks 📓
 
-Jupyter notebooks for analysis and competition submission.
+Interactive Jupyter notebooks for analysis and competition demonstration.
 
-## Files
+## Competition Demo
 
-| Notebook | Purpose |
-|----------|---------|
-| `main_analysis.ipynb` | **Competition submission** - Full pipeline demo |
+**`competition_demo.ipynb`** - The main competition submission notebook.
 
-## Running
+### Features
+
+- **82 cells** (42 code, 40 markdown)
+- **10 sections** covering the complete pipeline
+- **Interactive visualizations** embedded
+- **LaTeX formulas** for all key equations
+
+### Sections
+
+| # | Section | Content |
+|---|---------|---------|
+| 1 | Introduction | Problem statement, model overview |
+| 2 | Data Import | Loading BTC & NASDAQ data |
+| 3 | Feature Engineering | DUVOL, NCSKEW, RSI, volatility |
+| 4 | Regime Classification | Normal/Crash/Recovery detection |
+| 5 | Strategy Design | Trading rules, risk management |
+| 6 | Backtesting | Simulation with transaction costs |
+| 7 | **Crash Intensity Scoring** | 🌟 Novel CIS methodology |
+| 8 | **Stress Testing** | Flash crash, VaR, Monte Carlo |
+| 9 | Evaluation Metrics | CSI, Sharpe, Max Drawdown |
+| 10 | Conclusion | Results summary, future work |
+
+## Running the Notebook
 
 ```bash
 cd /home/cherry/FinPilot
-jupyter notebook notebooks/main_analysis.ipynb
+jupyter notebook notebooks/competition_demo.ipynb
 ```
 
-## Notebook Structure
+## Pre-Submission Checklist
 
-1. **Setup** - Import libraries and modules
-2. **Data Loading** - Load and prepare BTC + NASDAQ data
-3. **Feature Engineering** - Calculate DUVOL, NCSKEW, Canary
-4. **Regime Detection** - Identify Normal/Crash/Recovery periods
-5. **Strategy Execution** - Generate trading signals
-6. **Backtesting** - Simulate trades with 0.1% slippage
-7. **Evaluation** - Calculate CSI, Sharpe, Max Drawdown
-8. **Visualization** - Equity curves, drawdowns, regime overlay
-9. **Executive Summary** - Competition results
+- [ ] Restart kernel and run all cells
+- [ ] Verify all visualizations render
+- [ ] Check LaTeX formulas display correctly
+- [ ] Confirm no error cells
+- [ ] Save with output included
 
-## Tips
+## Generated Figures
 
-- Restart kernel and run all cells before submission
-- Check that all visualizations render correctly
-- LaTeX formulas should display properly in Markdown cells
+The notebook generates and saves figures to `../reports/figures/`:
+
+| Figure | Purpose |
+|--------|---------|
+| `crash_intensity_heatmap.png` | CIS visualization |
+| `monte_carlo_simulation.png` | Statistical validation |
+| `stress_performance.png` | Crash scenario comparison |
+| `var_distribution.png` | Risk metric visualization |

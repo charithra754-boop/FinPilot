@@ -38,6 +38,9 @@ class TradingStrategy:
         rsi_oversold: float = 30,
         rsi_overbought: float = 70,
         stop_loss_pct: float = 0.05,
+        trailing_stop_pct: float = 0.08,
+        drawdown_limit: float = 0.30,
+        high_vol_multiplier: float = 2.0,
         max_position_size: float = 1.0,
         volatility_target: float = 0.02
     ):
@@ -45,15 +48,25 @@ class TradingStrategy:
         Args:
             rsi_oversold: RSI level for buy signal
             rsi_overbought: RSI level for sell signal
-            stop_loss_pct: Stop-loss percentage
+            stop_loss_pct: Fixed stop-loss percentage
+            trailing_stop_pct: Trailing stop-loss percentage (follows price up)
+            drawdown_limit: Maximum portfolio drawdown before forced liquidation
+            high_vol_multiplier: Volatility threshold multiplier for reduced sizing
             max_position_size: Maximum position size (0-1)
             volatility_target: Target volatility for position sizing
         """
         self.rsi_oversold = rsi_oversold
         self.rsi_overbought = rsi_overbought
         self.stop_loss_pct = stop_loss_pct
+        self.trailing_stop_pct = trailing_stop_pct
+        self.drawdown_limit = drawdown_limit
+        self.high_vol_multiplier = high_vol_multiplier
         self.max_position_size = max_position_size
         self.volatility_target = volatility_target
+        
+        # Tracking variables for trailing stop and drawdown
+        self.peak_price = 0.0
+        self.peak_portfolio_value = 0.0
     
     def calculate_position_size(
         self, 
@@ -97,6 +110,94 @@ class TradingStrategy:
         
         loss_pct = (entry_price - current_price) / entry_price
         return loss_pct >= self.stop_loss_pct
+    
+    def check_trailing_stop(
+        self,
+        current_price: float,
+        peak_price: float
+    ) -> Tuple[bool, float]:
+        """
+        Check trailing stop-loss that follows price upward.
+        
+        The trailing stop moves up with the price but never moves down,
+        locking in gains as price increases.
+        
+        Args:
+            current_price: Current market price
+            peak_price: Highest price since entry
+            
+        Returns:
+            Tuple of (triggered, new_peak_price)
+        """
+        # Update peak price
+        new_peak = max(peak_price, current_price)
+        
+        if new_peak <= 0:
+            return False, new_peak
+        
+        # Check if price has dropped trailing_stop_pct from peak
+        drop_from_peak = (new_peak - current_price) / new_peak
+        triggered = drop_from_peak >= self.trailing_stop_pct
+        
+        return triggered, new_peak
+    
+    def check_drawdown_limit(
+        self,
+        current_portfolio_value: float,
+        peak_portfolio_value: float
+    ) -> Tuple[bool, float]:
+        """
+        Check if portfolio drawdown exceeds the circuit breaker limit.
+        
+        Forces 100% liquidation if drawdown exceeds threshold to 
+        prevent catastrophic losses.
+        
+        Args:
+            current_portfolio_value: Current total portfolio value
+            peak_portfolio_value: Highest portfolio value achieved
+            
+        Returns:
+            Tuple of (breaker_triggered, new_peak_value)
+        """
+        # Update peak portfolio value
+        new_peak = max(peak_portfolio_value, current_portfolio_value)
+        
+        if new_peak <= 0:
+            return False, new_peak
+        
+        # Calculate current drawdown
+        drawdown = (new_peak - current_portfolio_value) / new_peak
+        triggered = drawdown >= self.drawdown_limit
+        
+        return triggered, new_peak
+    
+    def calculate_high_vol_position_size(
+        self,
+        volatility: float,
+        avg_volatility: float
+    ) -> float:
+        """
+        Calculate position size with additional reduction during high volatility.
+        
+        Reduces position by 50% when current vol exceeds high_vol_multiplier * avg_vol.
+        
+        Args:
+            volatility: Current realized volatility
+            avg_volatility: Long-term average volatility
+            
+        Returns:
+            Adjusted position size
+        """
+        base_size = self.calculate_position_size(volatility)
+        
+        # Check for high volatility regime
+        if avg_volatility > 0 and volatility > 0:
+            vol_ratio = volatility / avg_volatility
+            if vol_ratio >= self.high_vol_multiplier:
+                # Reduce position by 50% during high volatility
+                return base_size * 0.5
+        
+        return base_size
     
     def generate_normal_signal(
         self,

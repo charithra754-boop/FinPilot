@@ -123,13 +123,70 @@ fig2 = viz.plot_regime_heatmap(regimes, prices)
 path2 = viz.save_figure(fig2, "regime_heatmap")
 print(f"       Saved: {path2}")
 
-# 3. Performance Dashboard
 print("    → Performance Dashboard...")
 fig3 = viz.plot_performance_dashboard(
     equity, benchmark, regimes, prices, all_metrics
 )
 path3 = viz.save_figure(fig3, "performance_dashboard")
 print(f"       Saved: {path3}")
+
+# 4. Stress Testing Visualizations
+print("\n[9] Generating Stress Testing Visualizations...")
+from stress_testing import StressTestScenarios
+
+stress_tester = StressTestScenarios(random_seed=42)
+
+# Generate flash crash scenario
+print("    → Flash Crash Scenario...")
+flash_crash = stress_tester.generate_flash_crash(prices, drop_pct=0.20, duration_days=3)
+
+# Create stress features and run backtest on stress scenario
+stress_features = features.copy()
+stress_features["price"] = flash_crash.prices
+stress_features["returns"] = flash_crash.prices.pct_change()
+stress_features["volatility_10d"] = stress_features["returns"].rolling(10).std()
+stress_features["volatility_30d"] = stress_features["returns"].rolling(30).std()
+
+stress_regimes = detector.detect_regimes(stress_features)
+stress_signals = strategy.run_strategy(stress_features, stress_regimes)
+stress_results = backtester.run_backtest(stress_features, stress_signals)
+stress_equity = backtester.calculate_equity_curve(stress_results)
+
+# 4a. Stress Performance Chart
+print("    → Stress Performance Chart...")
+fig4 = viz.plot_stress_performance(
+    equity, stress_equity, 
+    flash_crash.name,
+    flash_crash.stress_start,
+    flash_crash.stress_end
+)
+path4 = viz.save_figure(fig4, "stress_performance")
+print(f"       Saved: {path4}")
+
+# 4b. VaR Distribution
+print("    → VaR Distribution Chart...")
+returns = equity.pct_change().dropna()
+fig5 = viz.plot_var_distribution(
+    returns,
+    var_95=all_metrics['var_95'] / 100,
+    var_99=all_metrics['var_99'] / 100,
+    cvar_95=all_metrics['cvar_95'] / 100
+)
+path5 = viz.save_figure(fig5, "var_distribution")
+print(f"       Saved: {path5}")
+
+# 4c. Drawdown Recovery
+print("    → Drawdown Recovery Chart...")
+fig6 = viz.plot_drawdown_recovery(equity)
+path6 = viz.save_figure(fig6, "drawdown_recovery")
+print(f"       Saved: {path6}")
+
+# 4d. Volatility Regime Performance
+print("    → Volatility Regime Performance...")
+volatility = features['volatility_30d']
+fig7 = viz.plot_volatility_regime_performance(equity, volatility, vol_threshold=0.03)
+path7 = viz.save_figure(fig7, "volatility_regimes")
+print(f"       Saved: {path7}")
 
 print("\n" + "=" * 70)
 print("✅ VISUALIZATION GENERATION COMPLETE!")
@@ -139,9 +196,16 @@ Generated files:
   1. {path1} - Equity curve with drawdown
   2. {path2} - Regime timeline heatmap
   3. {path3} - Comprehensive performance dashboard
+  4. {path4} - Stress test performance (Flash Crash)
+  5. {path5} - VaR distribution with risk metrics
+  6. {path6} - Drawdown recovery timeline
+  7. {path7} - Volatility regime performance
 
-These visualizations demonstrate:
-  • How the strategy outperformed buy-and-hold ({all_metrics['total_return']:,.0f}% vs {all_metrics['benchmark_return']:,.0f}%)
-  • Crash detection (COVID Mar 2020, FTX Nov 2022) 
-  • Risk management ({all_metrics['max_drawdown']*100:.1f}% max drawdown vs {all_metrics['benchmark_drawdown']*100:.1f}% benchmark)
+Key Metrics:
+  • Total Return: {all_metrics['total_return']:,.0f}%
+  • Sharpe Ratio: {all_metrics['sharpe_ratio']:.2f}
+  • Max Drawdown: {all_metrics['max_drawdown']*100:.1f}%
+  • VaR 95%: {all_metrics['var_95']:.2f}%
+  • VaR 99%: {all_metrics['var_99']:.2f}%
+  • CVaR 95%: {all_metrics['cvar_95']:.2f}%
 """)
