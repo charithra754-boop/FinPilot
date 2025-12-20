@@ -1,21 +1,45 @@
 # Reports 📈
 
-Generated analysis reports and visualizations.
+All project reports and visualizations.
 
-## Purpose
+## Folder Structure
 
-Store output from backtests and analysis:
-- Equity curve charts
-- Drawdown analysis
-- Regime classification plots
-- Performance comparison tables
+```
+reports/
+├── README.md              # This file
+│
+├── competition/           # Competition submission
+│   └── final_submission.md
+│
+├── development/           # Development reports
+│   ├── verification_report.md
+│   ├── phase4_test_report.md
+│   ├── phase5_visualization_report.md
+│   └── project_progress_report.md
+│
+└── figures/               # Generated visualizations
+    ├── performance/       # Core performance charts
+    ├── stress_testing/    # Stress test visuals
+    └── risk_metrics/      # Risk analysis charts
+```
 
-## Planned Files
+## Competition Report
 
-| File | Description |
-|------|-------------|
-| `backtest_results.csv` | Trade-by-trade backtest log |
-| `performance_summary.md` | Key metrics summary |
-| `equity_curve.png` | Strategy vs benchmark chart |
-| `drawdown.png` | Drawdown over time |
-| `regime_overlay.png` | Price with regime highlighting |
+The main submission is **`competition/final_submission.md`** containing:
+
+- Executive Summary
+- Novel CIS methodology
+- Backtest results
+- Monte Carlo validation
+- 9 embedded visualizations
+
+## Development Reports
+
+Historical reports documenting project phases:
+
+| Report | Phase |
+|--------|-------|
+| `verification_report.md` | System integrity |
+| `phase4_test_report.md` | Unit testing |
+| `phase5_visualization_report.md` | Chart generation |
+| `project_progress_report.md` | Overall progress |
