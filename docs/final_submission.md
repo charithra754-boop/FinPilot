@@ -388,6 +388,12 @@ if recovery_score > 0.60 and days_in_cash >= 3:
 
 **Key advantage**: Crashes aren't binary - they have varying intensity. Our response matches the threat level.
 
+### CIS Visualization
+
+The Crash Intensity Heatmap shows how CIS evolves over time, with warmer colors indicating higher crash risk:
+
+![Crash Intensity Heatmap](figures/stress_testing/crash_intensity_heatmap.png)
+
 ---
 
 # 6. Key Formulas & Logic
@@ -566,7 +572,13 @@ The equity curve demonstrates consistent growth with controlled drawdowns:
 - Drawdowns are shallower and recover faster
 - Logarithmic scale shows consistent compounding
 
-## 6.4 Regime Timeline
+## 6.4 Performance Dashboard
+
+The comprehensive performance dashboard provides an at-a-glance view of strategy metrics:
+
+![Performance Dashboard](figures/performance/performance_dashboard.png)
+
+## 6.5 Regime Timeline
 
 The regime heatmap shows when the model detected crash conditions:
 
