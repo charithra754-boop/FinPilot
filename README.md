@@ -1,139 +1,192 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/🏆_Sharpe_Ratio-1.56-00C853?style=for-the-badge&labelColor=1a1a2e" alt="Sharpe"/>
-  <img src="https://img.shields.io/badge/📈_Return-56,000%25-2196F3?style=for-the-badge&labelColor=1a1a2e" alt="Return"/>
-  <img src="https://img.shields.io/badge/🛡️_Max_DD-44.7%25-FF9800?style=for-the-badge&labelColor=1a1a2e" alt="Drawdown"/>
-  <img src="https://img.shields.io/badge/✅_Tests-48_Passed-4CAF50?style=for-the-badge&labelColor=1a1a2e" alt="Tests"/>
-</p>
-
-<h1 align="center">🚀 FinPilot</h1>
-
-<p align="center">
-  <b>Next-Generation Crypto Trading System with Flash Crash Survivability</b><br>
-  <i>Professional-grade algorithmic trading with intelligent crash detection</i>
+  <img src="https://img.shields.io/badge/Python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"/>
+  <img src="https://img.shields.io/badge/Tests-48_Passing-success?style=flat-square&logo=pytest" alt="Tests"/>
+  <img src="https://img.shields.io/badge/Code_Style-PEP8-blue?style=flat-square" alt="PEP8"/>
 </p>
 
 <p align="center">
-  <a href="#-key-innovation">Key Innovation</a> •
+  <img src="https://img.shields.io/badge/Sharpe_Ratio-1.56-00C853?style=for-the-badge&labelColor=0d1117" alt="Sharpe"/>
+  <img src="https://img.shields.io/badge/Total_Return-56,000%25-2196F3?style=for-the-badge&labelColor=0d1117" alt="Return"/>
+  <img src="https://img.shields.io/badge/Max_Drawdown-44.7%25-FF9800?style=for-the-badge&labelColor=0d1117" alt="Drawdown"/>
+  <img src="https://img.shields.io/badge/Monte_Carlo-2.7x_Survival-9C27B0?style=for-the-badge&labelColor=0d1117" alt="Monte Carlo"/>
+</p>
+
+<h1 align="center">
+  <br>
+  🚀 FinPilot
+  <br>
+</h1>
+
+<h4 align="center">Next-Generation Crypto Trading System with Flash Crash Survivability</h4>
+
+<p align="center">
+  <a href="#-features">Features</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-usage">Usage</a> •
   <a href="#-results">Results</a> •
-  <a href="#-quick-start">Quick Start</a> •
   <a href="#-architecture">Architecture</a> •
-  <a href="#-documentation">Documentation</a>
+  <a href="#-api">API</a>
 </p>
 
 ---
 
-## 🌟 Key Innovation
+## ✨ Features
 
-> **Crash Intensity Score (CIS)** — A continuous 0-100 risk metric that replaces binary crash detection with proportional response.
+<table>
+<tr>
+<td width="50%">
 
-While other strategies use simple threshold-based crash detection that leads to whipsaws and delayed responses, FinPilot introduces **three groundbreaking features**:
+### 🎯 Crash Intensity Score (CIS)
+A continuous **0-100 risk metric** that replaces binary crash detection with proportional response.
 
-| Innovation | What It Does | Why It Matters |
-|------------|-------------|----------------|
-| **Crash Intensity Score** | Continuous 0-100 risk measurement | No more binary false signals |
-| **Proportional Positioning** | Graduated position reduction | Smooth risk management |
-| **Adaptive Recovery Engine** | ML-inspired re-entry optimization | Faster post-crash recovery |
-| **Monte Carlo Validation** | 1,000 scenario stress testing | Statistical proof of robustness |
+- No more false signals from binary thresholds
+- Graduated position sizing based on risk level
+- Real-time crash probability estimation
 
-### The Result
+</td>
+<td width="50%">
 
-**2.7x better survival rate** than buy-and-hold across 1,000 Monte Carlo simulated scenarios.
+### 🔄 Adaptive Recovery Engine
+ML-inspired re-entry optimization for **faster post-crash recovery**.
+
+- Multi-signal recovery detection
+- 4-step position scaling (25% → 100%)
+- Volatility-aware timing
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 📊 Monte Carlo Validation
+Statistical proof through **1,000 simulated scenarios**.
+
+- Stress testing across market conditions
+- Confidence intervals for all metrics
+- 2.7x better survival rate vs buy-and-hold
+
+</td>
+<td width="50%">
+
+### 🛡️ Multi-Factor Detection
+Combines multiple crash indicators:
+
+- **DUVOL** (25%) - Down-to-up volatility ratio
+- **NCSKEW** (20%) - Negative skewness
+- **NASDAQ Canary** (15%) - Cross-market signals
+- **Momentum** (15%) - Price acceleration
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+
+- Python 3.9 or higher
+- pip package manager
+
+### Quick Install
+
+```bash
+# Clone the repository
+git clone https://github.com/charithra754-boop/FinPilot.git
+cd FinPilot
+
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Dependencies
+
+```
+pandas>=1.5.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+scikit-learn>=1.0.0
+pytest>=7.0.0
+```
+
+---
+
+## 🚀 Usage
+
+### Run Full Backtest
+
+```bash
+# Execute the main backtest with all default parameters
+python scripts/execution/final_backtest.py
+```
+
+**Expected Output:**
+```
+═══════════════════════════════════════════════════════
+  FinPilot Backtest Results
+═══════════════════════════════════════════════════════
+  Total Return:     56,000%+
+  Sharpe Ratio:     1.56
+  Max Drawdown:     44.7%
+  Crashes Avoided:  3/3 (COVID, LUNA, FTX)
+═══════════════════════════════════════════════════════
+```
+
+### Generate Visualizations
+
+```bash
+python scripts/execution/generate_visualizations.py
+```
+
+Generates charts in `reports/figures/`:
+- `equity_curve.png` - Strategy vs benchmark
+- `crash_intensity_heatmap.png` - CIS over time
+- `monte_carlo_simulation.png` - 1,000 scenario results
+
+### Run Tests
+
+```bash
+# Run all 48 tests
+python -m pytest tests/ -v
+
+# Run specific module tests
+python -m pytest tests/test_crash_intensity.py -v
+```
+
+### Interactive Analysis
+
+```bash
+jupyter notebook notebooks/main_analysis.ipynb
+```
 
 ---
 
 ## 📊 Results
 
-### Performance Metrics
+### Performance Comparison
 
-<table>
-<tr>
-<th align="left">Metric</th>
-<th align="center">FinPilot</th>
-<th align="center">Buy & Hold</th>
-<th align="center">Advantage</th>
-</tr>
-<tr>
-<td>📈 Total Return</td>
-<td align="center">56,000%+</td>
-<td align="center">~1,600,000%</td>
-<td align="center">Risk-adjusted ✓</td>
-</tr>
-<tr>
-<td><b>📊 Sharpe Ratio</b></td>
-<td align="center"><b>1.56</b></td>
-<td align="center">0.9</td>
-<td align="center"><b>+73%</b></td>
-</tr>
-<tr>
-<td><b>🛡️ Max Drawdown</b></td>
-<td align="center"><b>44.7%</b></td>
-<td align="center">84%</td>
-<td align="center"><b>-47%</b></td>
-</tr>
-<tr>
-<td><b>🎯 CSI Score</b></td>
-<td align="center"><b>1,511</b></td>
-<td align="center">19</td>
-<td align="center"><b>+7,853%</b></td>
-</tr>
-<tr>
-<td>🎲 Monte Carlo Survival</td>
-<td align="center"><b>16.1%</b></td>
-<td align="center">6.0%</td>
-<td align="center"><b>2.7x better</b></td>
-</tr>
-</table>
+| Metric | FinPilot | Buy & Hold | Advantage |
+|--------|----------|------------|-----------|
+| 📈 **Total Return** | 56,000%+ | ~1,600,000% | Risk-adjusted ✓ |
+| 📊 **Sharpe Ratio** | **1.56** | 0.9 | **+73%** |
+| 🛡️ **Max Drawdown** | **44.7%** | 84% | **-47%** |
+| 🎯 **CSI Score** | **1,511** | 19 | **+7,853%** |
+| 🎲 **Monte Carlo Survival** | **16.1%** | 6.0% | **2.7x better** |
 
-### 🛡️ Crash Detection Record
+### Crash Detection Record
 
-<table>
-<tr>
-<th align="center">Event</th>
-<th align="center">Date</th>
-<th align="center">Market Drop</th>
-<th align="center">FinPilot</th>
-</tr>
-<tr>
-<td align="center">🦠 COVID Crash</td>
-<td align="center">Mar 2020</td>
-<td align="center">-53%</td>
-<td align="center">✅ <b>Protected</b></td>
-</tr>
-<tr>
-<td align="center">🌙 LUNA Collapse</td>
-<td align="center">May 2022</td>
-<td align="center">-58%</td>
-<td align="center">✅ <b>Protected</b></td>
-</tr>
-<tr>
-<td align="center">💥 FTX Collapse</td>
-<td align="center">Nov 2022</td>
-<td align="center">-26%</td>
-<td align="center">✅ <b>Protected</b></td>
-</tr>
-</table>
-
----
-
-## 🚀 Quick Start
-
-```bash
-# Clone
-git clone https://github.com/charithra754-boop/FinPilot.git
-cd FinPilot
-
-# Install
-pip install -r requirements.txt
-
-# Run backtest (reproduces all results)
-python scripts/final_backtest.py
-
-# Generate visualizations
-python scripts/generate_visualizations.py
-
-# Run tests (48 tests)
-python -m pytest tests/ -v
-```
+| Event | Date | Market Drop | FinPilot |
+|-------|------|-------------|----------|
+| 🦠 COVID Crash | Mar 2020 | -53% | ✅ **Protected** |
+| 🌙 LUNA Collapse | May 2022 | -58% | ✅ **Protected** |
+| 💥 FTX Collapse | Nov 2022 | -26% | ✅ **Protected** |
 
 ---
 
@@ -148,12 +201,12 @@ python -m pytest tests/ -v
 ║  └────┬─────┘   └────┬─────┘   └────┬─────┘   └────┬─────┘       ║
 ║       └──────────────┴──────────────┴──────────────┘             ║
 ║                              ▼                                   ║
-║           ┌────────────────────────────────────┐                 ║
-║           │   CRASH INTENSITY SCORE (0-100)    │                 ║
-║           │   CIS < 20: Full Position          │                 ║
-║           │   CIS 20-70: Proportional          │                 ║
-║           │   CIS > 70: Exit to Cash           │                 ║
-║           └─────────────────┬──────────────────┘                 ║
+║           ┌────────────────────────────────────────┐             ║
+║           │   CRASH INTENSITY SCORE (0-100)        │             ║
+║           │   ├─ CIS < 20: Full Position           │             ║
+║           │   ├─ CIS 20-70: Proportional           │             ║
+║           │   └─ CIS > 70: Exit to Cash            │             ║
+║           └─────────────────┬──────────────────────┘             ║
 ╠═════════════════════════════╪════════════════════════════════════╣
 ║                             ▼                                    ║
 ║              ADAPTIVE RECOVERY ENGINE                            ║
@@ -186,49 +239,56 @@ FinPilot/
 │   ├── stress_testing.py        # Flash crash simulation
 │   └── visualizations.py        # Charts & dashboards
 │
-├── 📜 scripts/                  # Execution scripts
-│   └── execution/               # Main scripts
-│       ├── final_backtest.py
-│       └── generate_visualizations.py
+├── 📜 scripts/execution/        # Execution scripts
+│   ├── final_backtest.py        # Run complete backtest
+│   └── generate_visualizations.py
 │
 ├── 📓 notebooks/                # Jupyter notebooks
-│   └── main_analysis.ipynb      # Main analysis notebook
+│   └── main_analysis.ipynb      # Interactive analysis
 │
 ├── 📚 docs/                     # Documentation
-│   ├── guides/                  # How-to guides
-│   ├── reports/                 # Development reports
-│   └── api/                     # API reference
 │
-├── 📈 reports/                  # Reports & figures
-│   └── figures/                 # Organized visualizations
-│       ├── performance/         # Core performance charts
-│       ├── stress_testing/      # Stress test visuals
-│       └── risk_metrics/        # Risk analysis charts
+├── 📈 reports/figures/          # Generated visualizations
 │
 └── 🧪 tests/                    # 48 unit tests
 ```
 
 ---
 
-## 📚 Documentation
+## 🔌 API
 
-<table>
-<tr>
-<th align="left">Document</th>
-<th align="left">Description</th>
-<th align="center">Link</th>
-</tr>
-<tr>
-<td>📓 Analysis Notebook</td>
-<td>Interactive Jupyter notebook</td>
-<td align="center"><a href="notebooks/main_analysis.ipynb">Open →</a></td>
-</tr>
-<tr>
-<td>📊 Visualization Gallery</td>
-<td>Generated charts including CIS heatmap</td>
-<td align="center"><a href="reports/figures/">Open →</a></td>
-</tr>
-</table>
+### Core Classes
+
+```python
+from src.crash_intensity import CrashIntensityScorer, IntensityAwareStrategy
+from src.backtester import Backtester
+from src.data_handler import DataHandler
+
+# Load data
+handler = DataHandler()
+crypto_df, nasdaq_df = handler.load_and_prepare('BTC_USD.csv', 'NASDAQ.csv')
+
+# Initialize CIS scorer
+scorer = CrashIntensityScorer()
+intensity = scorer.calculate_crash_intensity(features)  # Returns 0-100
+
+# Run strategy
+strategy = IntensityAwareStrategy()
+signals = strategy.run_intensity_strategy(features)
+
+# Backtest
+backtester = Backtester(initial_capital=100000)
+results = backtester.run_backtest(features, signals)
+```
+
+### Key Methods
+
+| Method | Description | Returns |
+|--------|-------------|---------|
+| `calculate_crash_intensity()` | Compute CIS from features | `float (0-100)` |
+| `calculate_proportional_position()` | Get position size for CIS | `float (0-1)` |
+| `run_intensity_strategy()` | Execute full strategy | `DataFrame` |
+| `run_backtest()` | Simulate performance | `Dict` |
 
 ---
 
@@ -240,25 +300,32 @@ $ python -m pytest tests/ -v
 ======================== 48 passed in 4.6s ========================
 ```
 
-<table>
-<tr>
-<th align="left">Module</th>
-<th align="center">Tests</th>
-<th align="center">Status</th>
-</tr>
-<tr><td>data_handler</td><td align="center">4</td><td align="center">✅</td></tr>
-<tr><td>features</td><td align="center">4</td><td align="center">✅</td></tr>
-<tr><td>metrics</td><td align="center">3</td><td align="center">✅</td></tr>
-<tr><td>regime_detector</td><td align="center">2</td><td align="center">✅</td></tr>
-<tr><td>strategy</td><td align="center">4</td><td align="center">✅</td></tr>
-<tr><td>visualizations</td><td align="center">9</td><td align="center">✅</td></tr>
-<tr><td>stress_testing</td><td align="center">5</td><td align="center">✅</td></tr>
-<tr><td>crash_intensity</td><td align="center">16</td><td align="center">✅</td></tr>
-<tr><td><b>Total</b></td><td align="center"><b>48</b></td><td align="center">✅</td></tr>
-</table>
+| Module | Tests | Status |
+|--------|-------|--------|
+| data_handler | 4 | ✅ |
+| features | 4 | ✅ |
+| metrics | 3 | ✅ |
+| regime_detector | 2 | ✅ |
+| strategy | 4 | ✅ |
+| visualizations | 9 | ✅ |
+| stress_testing | 5 | ✅ |
+| crash_intensity | 16 | ✅ |
+| **Total** | **48** | ✅ |
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <p align="center">
-  <b>�️ Built to survive. 📊 Proven by statistics. 🚀 Ready for production.</b>
+  <b>🛡️ Built to survive. 📊 Proven by statistics. 🚀 Ready for production.</b>
+</p>
+
+<p align="center">
+  <a href="https://github.com/charithra754-boop/FinPilot">
+    <img src="https://img.shields.io/badge/⭐_Star_this_repo-171515?style=for-the-badge&logo=github" alt="Star"/>
+  </a>
 </p>
