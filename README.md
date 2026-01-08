@@ -23,10 +23,13 @@
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#-installation">Installation</a> •
-  <a href="#-usage">Usage</a> •
+  <a href="#-usage">Demo</a> •
   <a href="#-results">Results</a> •
   <a href="#-architecture">Architecture</a> •
-  <a href="#-api">API</a>
+  <a href="#-project-structure">Structure</a> •
+  <a href="#-api">API</a> •
+  <a href="#-testing">Testing</a> •
+  <a href="#-license">License</a>
 </p>
 
 ---
