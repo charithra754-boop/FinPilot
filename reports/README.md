@@ -8,9 +8,6 @@ All project reports and visualizations.
 reports/
 ├── README.md              # This file
 │
-├── competition/           # Competition submission
-│   └── final_submission.md
-│
 ├── development/           # Development reports
 │   ├── verification_report.md
 │   ├── phase4_test_report.md
@@ -22,16 +19,6 @@ reports/
     ├── stress_testing/    # Stress test visuals
     └── risk_metrics/      # Risk analysis charts
 ```
-
-## Competition Report
-
-The main submission is **`competition/final_submission.md`** containing:
-
-- Executive Summary
-- Novel CIS methodology
-- Backtest results
-- Monte Carlo validation
-- 9 embedded visualizations
 
 ## Development Reports
 

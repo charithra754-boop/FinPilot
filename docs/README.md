@@ -7,7 +7,6 @@ Central documentation hub for FinPilot.
 ```
 docs/
 ├── README.md              # This file - documentation overview
-├── final_submission.md    # Main competition report
 │
 ├── guides/                # How-to guides
 │   └── CONTRIBUTING.md    # Development guidelines
@@ -26,20 +25,17 @@ docs/
 
 | Document | Description |
 |----------|-------------|
-| [Final Submission](final_submission.md) | Main competition report with all results |
 | [Contributing Guide](guides/CONTRIBUTING.md) | Development standards and workflow |
 | [Verification Report](reports/verification_report.md) | System integrity validation |
 
-## Competition Report
+## Overview
 
-The main submission document is **`final_submission.md`** which includes:
+FinPilot is a professional crypto trading system featuring:
 
-- Executive Summary with key innovations
-- Data processing methodology
-- Novel Crash Intensity Scoring (CIS) explanation
+- Novel Crash Intensity Scoring (CIS) methodology
 - Backtest results and metrics
 - Monte Carlo validation (1,000 scenarios)
-- Stress testing results
+- Stress testing framework
 
 ## For Developers
 

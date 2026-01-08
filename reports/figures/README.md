@@ -1,6 +1,6 @@
 # Figures 📊
 
-Generated visualizations for the competition submission.
+Generated visualizations for FinPilot backtest results.
 
 ## Folder Structure
 

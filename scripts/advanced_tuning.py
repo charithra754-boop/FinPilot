@@ -9,7 +9,6 @@ sys.path.insert(0, 'src')
 
 import json
 from pathlib import Path
-from datetime import datetime
 
 from data_handler import DataHandler
 from features import FeatureEngineer

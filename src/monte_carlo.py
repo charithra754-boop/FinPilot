@@ -2,7 +2,7 @@
 Monte Carlo Stress Simulation for FinPilot
 Statistical proof of strategy robustness through thousands of simulated scenarios.
 
-Competition Value:
+Features:
 - Shows quantitative rigor
 - Provides confidence intervals
 - Proves survivability statistically
@@ -12,7 +12,7 @@ Author: FinPilot Team
 
 import pandas as pd
 import numpy as np
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, Tuple, Optional
 from dataclasses import dataclass
 import warnings
 warnings.filterwarnings('ignore')

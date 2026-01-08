@@ -1,17 +1,16 @@
 # Notebooks 📓
 
-Interactive Jupyter notebooks for analysis and competition demonstration.
+Interactive Jupyter notebooks for analysis.
 
-## Competition Demo
+## Main Analysis
 
-**`competition_demo.ipynb`** - The main competition submission notebook.
+**`main_analysis.ipynb`** - The main analysis notebook.
 
 ### Features
 
-- **82 cells** (42 code, 40 markdown)
-- **10 sections** covering the complete pipeline
 - **Interactive visualizations** embedded
-- **LaTeX formulas** for all key equations
+- **Complete pipeline** from data loading to backtest
+- **Key metrics** and performance analysis
 
 ### Sections
 
@@ -31,17 +30,9 @@ Interactive Jupyter notebooks for analysis and competition demonstration.
 ## Running the Notebook
 
 ```bash
-cd /home/cherry/FinPilot
-jupyter notebook notebooks/competition_demo.ipynb
+cd /home/cherry/Projects/FinPilot
+jupyter notebook notebooks/main_analysis.ipynb
 ```
-
-## Pre-Submission Checklist
-
-- [ ] Restart kernel and run all cells
-- [ ] Verify all visualizations render
-- [ ] Check LaTeX formulas display correctly
-- [ ] Confirm no error cells
-- [ ] Save with output included
 
 ## Generated Figures
 

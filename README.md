@@ -9,7 +9,7 @@
 
 <p align="center">
   <b>Next-Generation Crypto Trading System with Flash Crash Survivability</b><br>
-  <i>Arbitrage Arena 2026 | Problem 1: Surviving the Crypto Flash Crash</i>
+  <i>Professional-grade algorithmic trading with intelligent crash detection</i>
 </p>
 
 <p align="center">
@@ -187,16 +187,14 @@ FinPilot/
 │   └── visualizations.py        # Charts & dashboards
 │
 ├── 📜 scripts/                  # Execution scripts
-│   ├── execution/               # Main scripts
-│   │   ├── final_backtest.py
-│   │   └── generate_visualizations.py
-│   └── notebook_utils/          # Helper scripts
+│   └── execution/               # Main scripts
+│       ├── final_backtest.py
+│       └── generate_visualizations.py
 │
 ├── 📓 notebooks/                # Jupyter notebooks
-│   └── competition_demo.ipynb   # 82-cell interactive demo
+│   └── main_analysis.ipynb      # Main analysis notebook
 │
-├── � docs/                     # Documentation
-│   ├── final_submission.md      # Competition report
+├── 📚 docs/                     # Documentation
 │   ├── guides/                  # How-to guides
 │   ├── reports/                 # Development reports
 │   └── api/                     # API reference
@@ -221,18 +219,13 @@ FinPilot/
 <th align="center">Link</th>
 </tr>
 <tr>
-<td>📓 Competition Demo</td>
-<td>82-cell interactive Jupyter notebook</td>
-<td align="center"><a href="notebooks/competition_demo.ipynb">Open →</a></td>
-</tr>
-<tr>
-<td>📄 Final Report</td>
-<td>Comprehensive competition submission</td>
-<td align="center"><a href="reports/final_submission.md">Open →</a></td>
+<td>📓 Analysis Notebook</td>
+<td>Interactive Jupyter notebook</td>
+<td align="center"><a href="notebooks/main_analysis.ipynb">Open →</a></td>
 </tr>
 <tr>
 <td>📊 Visualization Gallery</td>
-<td>9 generated charts including CIS heatmap</td>
+<td>Generated charts including CIS heatmap</td>
 <td align="center"><a href="reports/figures/">Open →</a></td>
 </tr>
 </table>
@@ -266,59 +259,6 @@ $ python -m pytest tests/ -v
 
 ---
 
-## 🎯 Competition Differentiators
-
-<table>
-<tr>
-<th align="left">Feature</th>
-<th align="center">FinPilot</th>
-<th align="center">Typical Entry</th>
-</tr>
-<tr>
-<td>🌟 Crash Detection</td>
-<td align="center"><b>Continuous CIS (0-100)</b></td>
-<td align="center">Binary threshold</td>
-</tr>
-<tr>
-<td>📉 Position Sizing</td>
-<td align="center"><b>Proportional to risk</b></td>
-<td align="center">Fixed</td>
-</tr>
-<tr>
-<td>🔄 Recovery</td>
-<td align="center"><b>Adaptive scoring</b></td>
-<td align="center">Wait for threshold</td>
-</tr>
-<tr>
-<td>📊 Validation</td>
-<td align="center"><b>1,000 Monte Carlo scenarios</b></td>
-<td align="center">Single backtest</td>
-</tr>
-<tr>
-<td>🧪 Unit Tests</td>
-<td align="center">48 passing</td>
-<td align="center">Minimal</td>
-</tr>
-<tr>
-<td>📈 Risk Metrics</td>
-<td align="center">VaR, CVaR, Recovery Time</td>
-<td align="center">Max Drawdown only</td>
-</tr>
-</table>
-
----
-
-## 📬 Submission
-
-<table>
-<tr><td><b>Competition</b></td><td>Arbitrage Arena 2026</td></tr>
-<tr><td><b>Problem</b></td><td>Surviving the Crypto Flash Crash</td></tr>
-<tr><td><b>Team</b></td><td>FinPilot</td></tr>
-<tr><td><b>Date</b></td><td>December 2025</td></tr>
-</table>
-
----
-
 <p align="center">
-  <b>🛡️ Built to survive. 📊 Proven by statistics. 🏆 Designed to win.</b>
+  <b>�️ Built to survive. 📊 Proven by statistics. 🚀 Ready for production.</b>
 </p>

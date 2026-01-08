@@ -8,7 +8,6 @@ This module implements:
 3. Adaptive Recovery Engine - Optimal re-entry timing
 
 Author: FinPilot Team
-Competition: Arbitrage Arena 2026 - Problem 1: Surviving the Crypto Flash Crash
 """
 
 import pandas as pd
