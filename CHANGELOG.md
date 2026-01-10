@@ -2,6 +2,25 @@
 
 All notable changes to FinPilot are documented here.
 
+## [1.0.1] - 2026-01-10
+
+### 🧹 Maintenance Release
+
+#### Improved
+- **README**: Added expanded quick navigation links for easier access to key sections
+- **README**: Revamped with better graphics and documentation structure
+
+#### Removed
+- Cleaned up competition-specific content and dead code
+- Removed pycache and pytest cache files from repository
+
+#### Verified
+- All 48 unit tests passing ✅
+- All modules import successfully ✅
+- Syntax validation complete ✅
+
+---
+
 ## [1.0.0] - 2025-12-19
 
 ### 🚀 Production Release
