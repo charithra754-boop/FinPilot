@@ -10,12 +10,12 @@ Store tuned model parameters after optimization:
 - Stop-loss percentages
 - Position sizing parameters
 
-## Planned Files
+## Files
 
-| File | Description |
-|------|-------------|
-| `best_params.json` | Optimized strategy parameters |
-| `regime_thresholds.json` | Crash detection thresholds |
+| File | Description | Status |
+|------|-------------|--------|
+| `best_params.json` | Optimized strategy parameters | ✅ Present |
+| `regime_thresholds.json` | Crash detection thresholds | 📋 Planned |
 
 ## Usage
 
@@ -27,3 +27,11 @@ with open('models/best_params.json', 'r') as f:
     
 strategy = TradingStrategy(**params)
 ```
+
+## Parameters in `best_params.json`
+
+Contains tuned values for:
+- Trailing stop percentages
+- Drawdown circuit breaker
+- Position sizing multipliers
+- CIS thresholds

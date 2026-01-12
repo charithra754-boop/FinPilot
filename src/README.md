@@ -73,7 +73,7 @@ cis = scorer.calculate_crash_intensity(features)
 ## Quick Test
 
 ```bash
-cd /home/cherry/FinPilot
+cd /home/cherry/Projects/FinPilot
 python -m pytest tests/ -v  # Run all 48 tests
 python src/crash_intensity.py  # Demo CIS module
 ```
